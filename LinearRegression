@@ -13,7 +13,7 @@ Simple regression fits a straigt line to the data.
 Dependent variable is Y; indepedent variable is X.
 
 
-IMPOPRT LIBRARY USING PYTHON:
+#IMPOPRT LIBRARY USING PYTHON:
 import numpy as np
 import pandas as pd
 import matplotlit.pyplot as plt
@@ -29,7 +29,7 @@ regressor.coef_
 regressor.intercept_
 
 
-PLOT:
+#PLOT:
 x_mean = [np.mean(x) for i in x]
 y_mean = [np.mean(y) for i in y]
 plt.scatter(x,y)
@@ -38,3 +38,9 @@ plt.plot(x, y_mean)
 plt.title("Tip vs Bill")
 plt.xlabel("Bill in $")
 
+R2 (r-squared) represents a number between 0 and 1. The higher the value the higher the linear regression.
+It is often referred to as a percentage. 
+
+lm=sf.ols(formula = "Tip - Bill", data=dataset).fit()
+
+#PRINT FUNCTION:
