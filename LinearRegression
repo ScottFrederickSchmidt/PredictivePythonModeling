@@ -23,4 +23,18 @@ x=dataset.iloc[: , :-1].values
 y=dataset.iloc[: , :-1].values
 
 # Fitting Linear Regression:
-regressor = 
+regressor = LinearRegression()
+regressor.fit(x,y)
+regressor.coef_
+regressor.intercept_
+
+
+PLOT:
+x_mean = [np.mean(x) for i in x]
+y_mean = [np.mean(y) for i in y]
+plt.scatter(x,y)
+plt.plot(x, regressor.predict(x), color ="red")
+plt.plot(x, y_mean)
+plt.title("Tip vs Bill")
+plt.xlabel("Bill in $")
+
