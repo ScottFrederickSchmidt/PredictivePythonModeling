@@ -1,3 +1,4 @@
+ESTIMATED REGRESSION MODEL:
 The sample regression line provides an estimate of the population regression line.
 
 y =  b0 + bx
@@ -5,3 +6,21 @@ y =  b0 + bx
 y =  Estimated (or predicted value)
 b0 = Estimate the regression intercept
 bx = Independent variable
+
+Regression is the attempt to explain the variation in a dependent variable using the variation in the independent variables.
+Simple regression fits a straigt line to the data.
+
+Dependent variable is Y; indepedent variable is X.
+
+
+IMPOPRT LIBRARY USING PYTHON:
+import numpy as np
+import pandas as pd
+import matplotlit.pyplot as plt
+
+dataset=pd.read_csv("tips.csv")
+x=dataset.iloc[: , :-1].values
+y=dataset.iloc[: , :-1].values
+
+# Fitting Linear Regression:
+regressor = 
