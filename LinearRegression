@@ -1,1 +1,7 @@
+The sample regression line provides an estimate of the population regression line.
 
+y =  b0 + bx
+
+y =  Estimated (or predicted value)
+b0 = Estimate the regression intercept
+bx = Independent variable
