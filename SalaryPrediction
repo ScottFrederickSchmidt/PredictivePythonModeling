@@ -17,3 +17,11 @@ regressor = LinearRegression()
 regressor.fit(x_train, y_train)
 regressor.coef_
 regressor.intercept_
+
+#MODEL PREDICTIONS: Fitting the model;
+#plt.scatter(x_test, y_test, color="blue")
+plt.plot(x_train, y_train, color="blue")
+plt.plot(x_train, regression.predict(x_train), color="green")
+plt.xlabel("Experience in Salary")
+plt.ylabel("Salary")
+plt.show()
