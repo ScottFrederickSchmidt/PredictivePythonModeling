@@ -50,8 +50,15 @@ Type: Function in sklearn metrics classification module.
 from sklearn.metrics import confusion_matrix
 cm= confusion_matrix(y_test, y_pred)
 
-
-
 pd.crosstab(y_test, y_pred, rownames=["True", columns= ["Predicted"], margins=True)
+
+#Probabilities:
+prob=classifier.predicit_prob(x_test)[:, -1] > 0.5
+cm2 = confusion_matrix(y_test, prob)
+
+
+#PLOTS UNDERSTANDING
+
+
 
 
