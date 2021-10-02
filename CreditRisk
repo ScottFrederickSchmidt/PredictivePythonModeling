@@ -1,1 +1,20 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
+df=pd.read_csv(r"C:\Users\scott\OneDrive\Desktop\Predictive\customer_data.csv")
+#print(df)
+
+# Getting independent and depdenent variables:
+x = df.iloc[:, :-1]
+y= df.iloc[:, 12]
+#print(x)
+#print(y)
+
+from sklearn.preprocessing import LabelEncoder
+label_encoder_y = LabelEncoder()
+y=label_encoder_y.fit_transform(y)
+#print(y)
+
+
+# Pre Processing for Data Cleaning:
