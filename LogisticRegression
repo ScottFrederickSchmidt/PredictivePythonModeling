@@ -42,6 +42,9 @@ Confusion Matrix:
 H0: Bought;         Positive
 H1: Did not bought; Negative
 
+Definition: confusion_matrix(y_true, y_pred, labels=None, simple_weight=None)
+Type: Function in sklearn metrics classification module.
+
 '''
 
 
