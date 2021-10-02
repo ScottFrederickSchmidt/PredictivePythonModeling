@@ -23,6 +23,15 @@ impute=impute.fit(x[:,-1:3])
 x[:, 1:3] = impute.fit_transform(x[:, 1:3])
 
 # Encode categorical variables:
+label_encoder_y = labelEncoder()
+y=label_encoder_y.fit_transform(y)
+
+label_encoder_x = LabelEncoder()
+x[:,0 = label_encoder_x.fit_transform(x[:,0])
+
+#CREATE DUMMIES:
+onehot=OneHotEncoder(categorical_features=[0])
+x=onehot.fit_transform(x).toarray()
 
 
 
