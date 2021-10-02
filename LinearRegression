@@ -44,3 +44,5 @@ It is often referred to as a percentage.
 lm=sf.ols(formula = "Tip - Bill", data=dataset).fit()
 
 #PRINT FUNCTION:
+lm.params
+print(lm.summary())
