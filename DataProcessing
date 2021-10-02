@@ -33,5 +33,9 @@ x[:,0 = label_encoder_x.fit_transform(x[:,0])
 onehot=OneHotEncoder(categorical_features=[0])
 x=onehot.fit_transform(x).toarray()
 
-
+#SPLITTING DATA: 
+'''
+Make model using train data.
+We check how good the model is by applying in test data.
+'''
 
