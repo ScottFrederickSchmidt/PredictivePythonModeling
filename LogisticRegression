@@ -31,22 +31,27 @@ sc_x=StandardScaler()
 x_train=sc_x.fit_transform(x_train)
 x_test=sc_x.transform(x_test)
 
+
 #Fitting Logistic Regressiont into training set:
 from sklearn.linear_model import Logistic Regression
 classifier = LogisticRegression(random_state=0)
 classifier.it(x_train, y_train)
 
 '''
-Confusion Matrix:
+Confusion Matrix Notes:
 
 H0: Bought;         Positive
 H1: Did not bought; Negative
 
 Definition: confusion_matrix(y_true, y_pred, labels=None, simple_weight=None)
 Type: Function in sklearn metrics classification module.
-
 '''
+#Confusion Matrix:
+from sklearn.metrics import confusion_matrix
+cm= confusion_matrix(y_test, y_pred)
 
 
+
+pd.crosstab(y_test, y_pred, rownames=["True", columns= ["Predicted"], margins=True)
 
 
