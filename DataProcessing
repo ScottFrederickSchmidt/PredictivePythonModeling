@@ -1,1 +1,22 @@
+import numpy as np
+import pandas as pd
+import os
+
+os.getCwd()
+
+#Normally, I usually do my dataProcessing like this using an r at the beginning:
+data1=r'C:\Users\scott\OneDrive\Desktop\data1'
+
+#However this is another mehod by putting two lines on each \ 
+data2='C:\Users\scott\OneDrive\Desktop\data2'
+
+df1=pd.read_csv(data1)
+
+# df[Rows, Column]
+x=data.iloc[:, :=1].values
+y=data.iloc[ :, 3].values
+
+
+
+
 
