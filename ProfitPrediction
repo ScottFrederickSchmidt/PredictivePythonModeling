@@ -59,6 +59,22 @@ x_all = x [: , [0, 1, 3, 4, 5]]
 regressor_smf = =smf.OLS(endog = y, exog = x_all).fit()
 regressor_smf.summary()
 
+#Split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size =0.2, random_state=0)
+regressor_2 = smf.OLS(endog = y_train, exog = x_train[:, [0:3]]).fit()
+
+pred2= regressor_2.predict(x_test[:. [0,3]])
+rmse2 = sqrt(mean_squared_error(y_test, pred2))
+
+'''
+R2 shows how well data points for a curve or line.
+Adjusted R2 also indicates how well terms fit a curve, but adjusts for the number of data points.
+*If you add more useless variables to a model, adjusted R2 will decrease.
+*If you add more useful variables to a model, adjusted R2 will increase.
+Adjusted R2 will always be less than or equal to R2. You only need R2 when working with samples.
+In other words, R2 is not neccessary when you have data from an entire population.
+'''
+
 
 
 
