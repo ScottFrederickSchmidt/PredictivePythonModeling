@@ -1,1 +1,14 @@
+# Import Libraries:
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
+#import data
+df=pd.read_csv(r"co_profit.csv")
+
+x=df.iloc[:, :-1].values
+y=df.iloc[:,4].values
+
+# Encoding categorical data:
+from sklearn.preprocessing import LabelEncoder, OneNotEncoder
+label_encoder_x = LabelEncoder()
