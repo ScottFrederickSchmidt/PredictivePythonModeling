@@ -18,3 +18,36 @@ y=label_encoder_y.fit_transform(y)
 
 
 # Pre Processing for Data Cleaning:
+
+#Remove irrelevant variables:
+x1= pd.get_dummies(x1, drop_first = True)
+
+#SPLIT:
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x2, y, test_size=0.2, random_state=0)
+
+#FINAL MODEL and AREA under ROC CURVE; MODEL;
+classifier = LogisticRegression(random_state =0)
+classifier.fit(x_train, y_train)
+
+#Predict training set:
+y_pred_r = classifier.predict(x_train)
+
+#Confusion Matrix:
+cm_tr = confusion_matrix(y_train, y_pred_r)
+
+#Correct Predictions:
+from sklearn.metrics import roc_auc_score
+roc_auc_score(y_true = y_train, y_score = y_pred_r)
+
+# Predictions in test set:
+y_pred = classifier.predict(x_test)
+cm = confusion_matrix(y_test, y_pred)
+
+#roc_auc score is the Area Under the Curve
+#Higher the better probability. 
+
+
+
+
