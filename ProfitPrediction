@@ -55,7 +55,9 @@ regressor_smf =smf.OLS(endog = y, exog = x_all).fit()
 regressor_smf.summary()
 
 #STEPS TO MAKE OPTIMAL:
-
+x_all = x [: , [0, 1, 3, 4, 5]]
+regressor_smf = =smf.OLS(endog = y, exog = x_all).fit()
+regressor_smf.summary()
 
 
 
