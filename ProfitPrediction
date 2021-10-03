@@ -12,3 +12,12 @@ y=df.iloc[:,4].values
 # Encoding categorical data:
 from sklearn.preprocessing import LabelEncoder, OneNotEncoder
 label_encoder_x = LabelEncoder()
+
+#Removing one dummy and Splitting Dataset:
+x[:, 3] = label_encoder_x.fit_transform(x[:,3])
+
+onehotencoder_x= OneHotEncoder(categorical_features=[3])
+x=onehotencoder_x.fit_transform(x).toarray()
+
+#Removing one category to avoid dummy, variable trap:
+x= x[:,1]
