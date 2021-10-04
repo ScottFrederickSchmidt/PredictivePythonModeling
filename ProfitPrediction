@@ -63,6 +63,7 @@ regressor_smf.summary()
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size =0.2, random_state=0)
 regressor_2 = smf.OLS(endog = y_train, exog = x_train[:, [0:3]]).fit()
 
+# Predictions:
 pred2= regressor_2.predict(x_test[:. [0,3]])
 rmse2 = sqrt(mean_squared_error(y_test, pred2))
 
@@ -74,6 +75,10 @@ Adjusted R2 also indicates how well terms fit a curve, but adjusts for the numbe
 Adjusted R2 will always be less than or equal to R2. You only need R2 when working with samples.
 In other words, R2 is not neccessary when you have data from an entire population.
 '''
+
+#Final Model Implementation:
+regressor3 = smf.OLS(endog = y_train, exog = x_train[: [0, 3, 5]])
+rmse3 = sqrt(mean_squared_error(y_test, pred3)
 
 
 
