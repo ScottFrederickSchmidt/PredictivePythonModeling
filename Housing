@@ -13,3 +13,11 @@ cols= ["CRIM", "B", "INOUS", "NOX", "RM", "MEDV"]
 sns.pairplot(df[cols], height=3.5)
 plt.show()
 
+#PLOTTING CORRELATIONS:
+cm=np.corrcoef(df[cols].values.T)
+
+sns.heatmap(data=cm, cbar=True, annot = True, square = True, annot_kws = {"size":15},
+xticklabels=cols,
+yticklabels=cols)
+
+plt.show()
