@@ -48,3 +48,16 @@ from sklearn.preprocessing import StandardScaler
 sc_x_s = StandardScaler()
 x_train_s = sc_x_s.fit_transform(x_train_s)
 x_test_s = sc_x_s.transform(x_test_s)
+
+#Adding one extra column:
+import statsmodel.api as sm
+x_train_s = sm.add_constant(x_train_s)
+x_test_s = sm.add_constant(x_test_s)
+
+#LM Model:
+import statsmodels.formula.api as smnf
+classifier2=smf.Logit(endog = y_train_s, exog = x_train_s)
+classifier2.summary()
+#R-squared is 0.266
+
+
