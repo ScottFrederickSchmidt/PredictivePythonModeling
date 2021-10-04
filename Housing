@@ -28,7 +28,26 @@ x=dataset.iloc[:, :-1].values
 y=dataset.iloc[:, 13].values
 
 from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3. random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=0)
 
 #MLR MODEL WITH SKLEARN AND PREDICTIONS:
+from sklearn.linear_model import LinearRegression
+regressor=LinearRegression()
+regressor.fit(x_train, y_train)
+regressor.coef_
+regressor.intercept_
+pred = regressor.predict(x_test)
+
+from sklearn.metrics impprt mean_squared_error
+from math import sqrt
+
+rmse = sqrt(mean_squared_error(y_test, pred)
+
+#MLR with STATSMODELS AND PREDICTIONS:
+import statsmodels.api as sm
+xs = sm.add_constant(x)
+
+import statsmodel.formula.api as smf
+regressor_ols = smf.OLD(endog = y_train, exog = x_train).fit
+
 
