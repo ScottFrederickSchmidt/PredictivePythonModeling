@@ -1,1 +1,15 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(r"housing.csv")
+head=df.head()
+
+#CORRELATION PLOTS:
+import seaborn as sns
+sns.set(style='whitegrid', context='notebook')
+
+cols= ["CRIM", "B", "INOUS", "NOX", "RM", "MEDV"]
+sns.pairplot(df[cols], height=3.5)
+plt.show()
 
