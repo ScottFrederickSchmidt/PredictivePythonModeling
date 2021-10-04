@@ -22,4 +22,29 @@ sc_x = StandardScaler()
 x_train = sc_x.fit_transform(x_train)
 x_test = sc_x.transform(x_test)
 
-#FEATURE SCALING:
+####FEATURE SCALING:
+
+#Prediction
+pred1 = classifier.predict(x_test)
+
+#Confusion Matrix:
+from sklearn.metrics import confusion_matrixc
+cm = confusion_matrix(y_test, pred1)
+
+#TP = 118
+#TN = 36
+#TP = 26
+#TN = 22
+#Accurary = 0.8
+
+
+### FIT MODE WITH STATSMODEL LIBRARY:
+from sklearn.model_selection import train_test_split
+x_train_s, x_test_s, y_train_s, y_test_s = train_test_split(x, y, test_size =0.25, 
+random_state=0)
+
+#Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc_x_s = StandardScaler()
+x_train_s = sc_x_s.fit_transform(x_train_s)
+x_test_s = sc_x_s.transform(x_test_s)
