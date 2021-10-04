@@ -60,4 +60,14 @@ classifier2=smf.Logit(endog = y_train_s, exog = x_train_s)
 classifier2.summary()
 #R-squared is 0.266
 
+#Preditions:
+pred2=classifier2.predict(x_test_s)
+
+#Predict directly give predictions as 0 or 1. But stats model give probabilities
+# Hence setting threshold.
+
+pred2= (pred2> 0.5).astype(int)
+
+###BACKWARD ELIMINATION APPROACH:
+
 
