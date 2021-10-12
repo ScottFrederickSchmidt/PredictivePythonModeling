@@ -1,3 +1,15 @@
+'''
+Linear regression is used when predicting a numeric probability predicition:
+1)What will these stocks return after one year?
+2)What is the chance this person will graduate from our college?
+3)What is the probability this person will be able to pay off his loan?
+
+Logistic regression is generally a yes or no question such as:
+1)Does this person have cancer?
+2)Will this person graduate?
+3)Will this investment outperform the SP500?
+'''
+
 ESTIMATED REGRESSION MODEL:
 The sample regression line provides an estimate of the population regression line.
 
