@@ -44,8 +44,7 @@ roc_auc_score(y_true = y_train, y_score = y_pred_r)
 y_pred = classifier.predict(x_test)
 cm = confusion_matrix(y_test, y_pred)
 
-#roc_auc score is the Area Under the Curve
-#Higher the better probability. 
+#roc_auc score is the Area Under the Curvem, higher the better probability. 
 
 
 
