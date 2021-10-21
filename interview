@@ -1,4 +1,4 @@
-Here is an interview coding test I had to do for a Fortune50 company in Oct2021.
+Here is an interview coding project for a Fortune50 company in Oct2021.
 -------------
 
 Before Starting:
@@ -46,5 +46,4 @@ Your work will be evaluated in the following areas:
 	• The performance of each model on the test set (using AUC)
 	• The organization and readability of your code
 	• The write-up comparing the models
-
-Please do not submit the original data back to us. 
+ 
