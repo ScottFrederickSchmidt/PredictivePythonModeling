@@ -10,8 +10,15 @@ You may create new features. However, you may not add or supplement with externa
 import numpy as np
 import pandas as pd
 import os
-import seaborn as sns
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import Imputer
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.model_selection import train_test_split
+
+#df=r'C:\Users\scot\Desktop\exercise_40_test' 
+df=r'C:\Users\scott\Desktop\exercise_40_train' 
+df=df.dropna() #delete any rows with missing values
+df=df.drop_duplicates(subset=None, keep=’first’, inplace=False) #drop dupliates
+
 
 '''
 Data leakage can be defined as: 
@@ -22,11 +29,6 @@ Data leakage can be defined as:
 5)Normalizing After Splitting, BUT Before Cross Validation.
 '''
 
-df=r'C:\Users\scott\Desktop\exercise_40_test' #create df
-df=df.dropna()  #delete any rows with missing values
-df=df.drop_duplicates(subset=None, keep=’first’, inplace=False) #drop dupliates
-
-dfY=r'C:\Users\scott\Desktop\exercise_40_train'  #trainDF 
 
 
 
@@ -35,20 +37,6 @@ Step 2 - Build your models:
 For this exercise, you are required to build two models. The first model must be a logistic regression. 
 The second model may be any supervised learning algorithm that is not from the GLM family.
 '''
-
-#Split the data into training set and testing set using train_test_split
-from sklearn.model_selection import train_test_split
-X=df[['Daily Time Spent on Site',  'Age',  'Area Income']]
-y=df['Clicked on Ad']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
-
-#Train and fit a logistic regression model on the training set.
-from sklearn.linear_model import LogisticRegression
-
-logmodel=LogisticRegression()
-logmodel.fit(X_train, y_train)
-
 
 
 
@@ -64,8 +52,6 @@ Each file should have a single column representing the predicted probabilities f
 
 
 
-
-
 '''
 Step 4 - Compare the modeling approaches:
 Please write an executive summary that includes a comparison of the two modeling approaches, with emphasis on  relative strengths and weaknesses of the algorithms.
@@ -75,7 +61,6 @@ Based on your model development process, include estimates for the test AUCs for
 The estimates should be in a table and rounded to four decimal places. 
 Finally, describe how you would demonstrate to a business partner that one model is better than the other without using a scoring metric.
 '''
-
 
 
 
