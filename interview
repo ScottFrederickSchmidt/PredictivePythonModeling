@@ -9,6 +9,15 @@ Success in this exercise typically involves feature engineering and avoiding dat
 You may create new features. However, you may not add or supplement with external data. 
 '''
 
+import numpy as np
+import pandas as pd
+import os
+from sklearn.preprocessing import Imputer
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.model_selection import train_test_split
+
+df=r'C:\Users\scott\OneDrive\Desktop\exercise_40_test' 
+
 
 
 ####################
@@ -27,6 +36,7 @@ Be sure to output a prediction for each of the rows in the test dataset (10K row
 Save the results of each of your models in a separate CSV file.  Title the two files 'glmresults.csv' and 'nonglmresults.csv'. 
 Each file should have a single column representing the predicted probabilities for its respective model. Please do not include a header label or index column. 
 
+
 ####################
 '''
 Step 4 - Compare the modeling approaches:
@@ -37,6 +47,7 @@ Based on your model development process, include estimates for the test AUCs for
 The estimates should be in a table and rounded to four decimal places. 
 Finally, describe how you would demonstrate to a business partner that one model is better than the other without using a scoring metric.
 '''
+
 
 ####################
 '''
