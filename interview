@@ -7,6 +7,13 @@ The data in this exercise have been simulated to mimic real, dirty data.
 Please clean the data with whatever method(s) you believe to be best/most suitable. 
 Success in this exercise typically involves feature engineering and avoiding data leakage. 
 You may create new features. However, you may not add or supplement with external data. 
+
+Data leakage 
+1)Understanding the Dataset.
+2)Cleaning Dataset for Duplicates.
+3)Selecting Features with Regard to Target Variable Correlation and Temporal Ordering.
+4)Splitting Dataset into Train, Validation, and Test Groups.
+5)Normalizing After Splitting, BUT Before Cross Validation.
 '''
 
 import numpy as np
