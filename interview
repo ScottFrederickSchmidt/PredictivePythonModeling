@@ -23,7 +23,8 @@ Create predictions on the data in test.csv using each of your trained models.
 The predictions should be the class probabilities for belonging to the positive class (labeled '1').  
 
 Be sure to output a prediction for each of the rows in the test dataset (10K rows). 
-Save the results of each of your models in a separate CSV file.  Title the two files 'glmresults.csv' and 'nonglmresults.csv'. Each file should have a single column representing the predicted probabilities for its respective model. Please do not include a header label or index column. 
+Save the results of each of your models in a separate CSV file.  Title the two files 'glmresults.csv' and 'nonglmresults.csv'. 
+Each file should have a single column representing the predicted probabilities for its respective model. Please do not include a header label or index column. 
 
 Step 4 - Compare the modeling approaches
 Please write an executive summary that includes a comparison of the two modeling approaches, with emphasis on  relative strengths and weaknesses of the algorithms.
