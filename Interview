@@ -26,7 +26,9 @@ start=time.time()
 #df=r'C:\Users\scot\Desktop\exercise_40_test' 
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
-df=df.dropna() #delete any rows with missing values the simple way
+df=df.dropna() #delete any rows with missing values the simple way 
+#Note: A more complex way for missing data is to use a function to impute missing values by taking the mean of a specific column.
+
 df=df.drop_duplicates() #drop dupliates the smiple way
 # print(df)
 
