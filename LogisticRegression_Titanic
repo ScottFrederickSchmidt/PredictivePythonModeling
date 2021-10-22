@@ -11,11 +11,9 @@ import seaborn as sns
 #Import the data set
 titanic_data = pd.read_csv(r'C:\Users\Scott\Desktop\titanic_train.csv')
 
-
 #Drop all rows with missing data:
 titanic_data.dropna(inplace=True)
-print(titanic_data)
-
+#print(titanic_data)
 
 #These values have no numeric value:
 titanic_data.drop(['Name', 'PassengerId', 'Ticket', 'Sex', 'Embarked', 'Cabin'], axis = 1, inplace = True)
@@ -23,6 +21,7 @@ titanic_data.drop(['Name', 'PassengerId', 'Ticket', 'Sex', 'Embarked', 'Cabin'],
 
 #Split the data set into x and y data
 y_data = titanic_data['Survived']
+#print(y_data)
 x_data = titanic_data.drop('Survived', axis = 1)
 
 #Split the data set into training data and test data
@@ -44,3 +43,18 @@ print(classification_report(y_test_data, predictions))
 #Generate a confusion matrix
 from sklearn.metrics import confusion_matrix
 print(confusion_matrix(y_test_data, predictions))
+
+'''
+   precision    recall  f1-score   support
+
+           0       0.80      0.17      0.29        23
+           1       0.62      0.97      0.76        32
+
+    accuracy                           0.64        55
+   macro avg       0.71      0.57      0.52        55
+weighted avg       0.70      0.64      0.56        55
+
+[[ 4 19]
+ [ 1 31]]
+
+'''
