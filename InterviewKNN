@@ -9,26 +9,22 @@ You may create new features. However, you may not add or supplement with externa
 
 import numpy as np
 import pandas as pd
-import time
+import matplotlib.pyplot as plt
 import seaborn as sns
-
-'''
-Data leakage can be defined as: 
-1)Understanding the Dataset.
-2)Cleaning Dataset for Duplicates.
-3)Selecting Features with Regard to Target Variable Correlation and Temporal Ordering.
-4)Splitting Dataset into Train, Validation, and Test Groups.
-5)Normalizing After Splitting, BUT Before Cross Validation.
-'''
+%matplotlib inline
 
 start=time.time()
 
-#df=r'C:\Users\scot\Desktop\exercise_40_test' 
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
-df=df.dropna() #delete any rows with missing values the simple way
-df=df.drop_duplicates() #drop dupliates the smiple way
-# print(df)
+
+#Drop columns that provide no numberic value:
+df.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
+         'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
+         'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
+
+df.dropna(inplace=True) #delete any rows with missing values the simple way
+#print(df)
 
 '''
 Step 2 - Build your models: 
@@ -36,40 +32,49 @@ For this exercise, you are required to build two models. The first model must be
 The second model may be any supervised learning algorithm that is not from the GLM family.
 '''
 
-# MODEL2:
-from sklearn.model_selection import train_test_split # splitting the data
-from sklearn.linear_model import LogisticRegression # model algorithm
-from sklearn import metrics
-import matplotlib.pyplot as plt
-
+# MODEL2 KNN:
 y = np.asarray(df['y']) #This will ALWAYS stay the same as the depedent variable column.
-logDF=[] #keep track of the logistic regression results
+results=[] #keep track of the logistic regression results
 
-for i in range(1, 10_001):
-    xNUM='x'+str(i) #this will increment through column x1 to x100 as new independent variable.
-    try:
-        X = np.asarray(df[[xNUM]].values) #this will increment through x1 to x100. 
-        logmodel=LogisticRegression()
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = None)
-        
-        logmodel=LogisticRegression()
-        p=logmodel.fit(X_train, y_train)
-        print(p)
-        
-        #logDf.append(y_pred)
-        
-        #cnf_matrix = metrics.confusion_matrix(y_test, y_pred)
-        #probability= round(metrics.accuracy_score(y_test, y_pred), 4)
+#Import standardization functions from scikit-learn
+from sklearn.preprocessing import StandardScaler
 
-        #logDF.append(probability) #add probability to list
-      
-        
-        time.sleep(.05) #DO NOT WANT TO CRASH MY NEW COMPUTER!
-    except:
-        #This WILL sometimes happen, for example on 'Tuesday':
-        print("An ERROR occurred on: ", xNUM)
-        logDF.append("ERORR") 
-print("Done calculating logistic regression test train in: ",  round(time.time()-start, 3), " seconds")
+#Standardize the data set
+scaler = StandardScaler()
+scaler.fit(df.drop('y', axis=1))
+scaled_features = scaler.transform(df.drop('y', axis=1))
+scaled_data = pd.DataFrame(scaled_features, columns = df.drop('y', axis=1).columns)
+
+#Split the data set into training data and test data
+from sklearn.model_selection import train_test_split
+x = scaled_data
+y = df['y']
+x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x, y, test_size = 0.3)
+
+#Train the model and make predictions
+from sklearn.neighbors import KNeighborsClassifier
+model = KNeighborsClassifier(n_neighbors = 1)
+model.fit(x_training_data, y_training_data)
+predictions = model.predict(x_test_data)
+
+#Performance measurement
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+print(classification_report(y_test_data, predictions))
+print(confusion_matrix(y_test_data, predictions))
+
+#Selecting an optimal K value
+error_rates = []
+for i in np.arange(1, 88):
+    new_model = KNeighborsClassifier(n_neighbors = i)
+    new_model.fit(x_training_data, y_training_data)
+    new_predictions = new_model.predict(x_test_data)
+    error_rates.append(np.mean(new_predictions != y_test_data))
+
+plt.figure(figsize=(16,12))
+plt.plot(error_rates)
+
+print("Done calculating KNN nearest neighbors in: ",  round(time.time()-start, 3), " seconds")
 
 '''
 Step 3 - Generate predictions:
@@ -79,19 +84,25 @@ The predictions should be the class probabilities for belonging to the positive 
 Be sure to output a prediction for each of the rows in the test dataset (10K rows). 
 Save the results of each of your models in a separate CSV file.  Title the two files 'glmresults.csv' and 'nonglmresults.csv'. 
 Each file should have a single column representing the predicted probabilities for its respective model. \
-Please do not include a header label or index column. 
-
-NOTES:
-#index  = false gets rid of index 
-#header = false gets rid of header
+Please do not include a header label or index column.
 '''
 
-# Create the pandas logistic regression pandas DataFrame:
-logDF = pd.DataFrame(logDF)
-logDF.to_csv(r'C:\Users\Scott\Desktop\logDF.csv', index=False, header=False)
-
 # Create the other pandas DataFrame:
-nonDF = pd.DataFrame(df)
-nonDF.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False)
+df = pd.DataFrame(df)
+df.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False) #index, header  = false gets rid of index, header 
 
 print("Program finishing! ",  round(time.time()-start, 3), " seconds.")
+
+'''
+     precision    recall  f1-score   support
+
+           0       0.85      0.91      0.88        32
+           1       0.25      0.17      0.20         6
+
+    accuracy                           0.79        38
+   macro avg       0.55      0.54      0.54        38
+weighted avg       0.76      0.79      0.77        38
+
+[[29  3]
+ [ 5  1]]
+'''
