@@ -26,11 +26,14 @@ start=time.time()
 #df=r'C:\Users\scot\Desktop\exercise_40_test' 
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
-df=df.dropna() #delete any rows with missing values the simple way 
-#Note: A more complex way for missing data is to use a function to impute missing values by taking the mean of a specific column.
-
+df=df.dropna(inplace=True) #delete any rows with missing values the simple way
 df=df.drop_duplicates() #drop dupliates the smiple way
+df.drop(['x3', 'PassengerId', ], axis = 1, inplace = True)
 # print(df)
+
+#Split the data set into x and y data
+y_data = titanic_data['y']
+x_data = titanic_data.drop('y', axis = 1)
 
 '''
 Step 2 - Build your models: 
@@ -47,34 +50,31 @@ import matplotlib.pyplot as plt
 y = np.asarray(df['y']) #This will ALWAYS stay the same as the depedent variable column.
 logDF=[] #keep track of the logistic regression results
 
-for i in range(1, 101):
-    xNUM='x'+str(i) #this will increment through column x1 to x100 as new independent variable.
-    try:
-        X = np.asarray(df[[xNUM]]) #this will increment through x1 to x100. 
-        logmodel=LogisticRegression()
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = None)
-        
-        #instantiate the model
-        log_regression = LogisticRegression()
+#Split the data set into x and y data
+y_data = titanic_data['Survived']
+x_data = titanic_data.drop('Survived', axis = 1)
 
-        #fit the model using the training data
-        log_regression.fit(X_train,y_train)
+#Split the data set into training data and test data
+from sklearn.model_selection import train_test_split
+x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x_data, y_data, test_size = 0.3)
 
-        #use model to make predictions on test data
-        y_pred = log_regression.predict(X_test)
-        
-        cnf_matrix = metrics.confusion_matrix(y_test, y_pred)
-        probability= round(metrics.accuracy_score(y_test, y_pred), 4)
+#Create the model
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
 
-        logDF.append(probability) #add probability to list
-      
-        
-        time.sleep(.05) #DO NOT WANT TO CRASH MY NEW COMPUTER!
-    except:
-        #This WILL sometimes happen, for example on 'Tuesday':
-        print("An ERROR occurred on: ", xNUM)
-        logDF.append("ERORR") 
-print("Done calculating logistic regression test train in: ",  round(time.time()-start, 3),, " seconds")
+#Train the model and create predictions
+model.fit(x_training_data, y_training_data)
+predictions = model.predict(x_test_data)
+
+#Calculate performance metrics
+from sklearn.metrics import classification_report
+#print(classification_report(y_test_data, predictions))
+
+#Generate a confusion matrix
+from sklearn.metrics import confusion_matrix
+print(confusion_matrix(y_test_data, predictions))
+
+
 
 '''
 Step 3 - Generate predictions:
