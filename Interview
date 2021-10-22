@@ -1,5 +1,5 @@
 '''
-Python data science interview coding project for a Fortune50 company!!
+Python data science interview coding project for a Fortune50 company!
 Step1: Clean and prepare your data:
 The data in this exercise have been simulated to mimic real, dirty data. 
 Please clean the data with whatever method(s) you believe to be best/most suitable. 
@@ -9,6 +9,7 @@ You may create new features. However, you may not add or supplement with externa
 
 import numpy as np
 import pandas as pd
+import time
 import seaborn as sns
 
 '''
@@ -20,10 +21,12 @@ Data leakage can be defined as:
 5)Normalizing After Splitting, BUT Before Cross Validation.
 '''
 
+start=time.time()
+
 #df=r'C:\Users\scot\Desktop\exercise_40_test' 
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
-df.dropna() #delete any rows with missing values the simple way
+df=df.dropna() #delete any rows with missing values the simple way
 df=df.drop_duplicates() #drop dupliates the smiple way
 # print(df)
 
@@ -35,20 +38,39 @@ The second model may be any supervised learning algorithm that is not from the G
 
 #LOGISTIC REGRESSION:
 from sklearn.model_selection import train_test_split # splitting the data
-i=1
-
-X = np.asarray(df[['x'+i]])
-y = np.asarray(df['y'])
-
 from sklearn.linear_model import LogisticRegression # model algorithm
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = None)
+from sklearn import metrics
+import matplotlib.pyplot as plt
 
-logDF=[]
+y = np.asarray(df['y']) #This will ALWAYS stay the same as the depedent variable column.
+
+logDF=[] #keep track of the logistic regression results
 
 for i in range(1, 10_000):
-    logmodel=LogisticRegression()
-    logDF=logmodel.fit(X_train, y_train)
-    
+    xCOL='x'+str(i) #this will increment through column x1 to x100 as new independent variable.
+    try:
+        X = np.asarray(df[[xCOL]]) #this will increment through x1 to x100. 
+        logmodel=LogisticRegression()
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = None)
+        
+        #instantiate the model
+        log_regression = LogisticRegression()
+
+        #fit the model using the training data
+        log_regression.fit(X_train,y_train)
+
+        #use model to make predictions on test data
+        y_pred = log_regression.predict(X_test)
+
+        #use model to make predictions on test data
+        y_pred = log_regression.predict(X_test)
+        logDF.append(y_pred) #add number to new DF
+        time.sleep(.05) #DO NOT WANT TO CRASH MY NEW COMPUTER!
+        print(y_pred)
+    except:
+        print("An exception occurred on: ", xCOL)
+        logDF.append("ERORR") 
+print("Done calculating logistic regression test train in: ", time.time()-start, " seconds")
 
 '''
 Step 3 - Generate predictions:
@@ -59,11 +81,22 @@ Be sure to output a prediction for each of the rows in the test dataset (10K row
 Save the results of each of your models in a separate CSV file.  Title the two files 'glmresults.csv' and 'nonglmresults.csv'. 
 Each file should have a single column representing the predicted probabilities for its respective model. \
 Please do not include a header label or index column. 
+
+NOTES:
+#index  = false gets rid of index 
+#header = false gets rid of header
 '''
 
-#index = false gets rid of index and header=False gets rid of header
-#df.to_csv(r'C:\Users\Scott\Desktop\logDF.csv', index=False, header=False)
-#df.to_csv(r'C:\Users\Scott\Desktop\test.csv', index=False, header=False)
+
+# Create the pandas logistic regression pandas DataFrame:
+logDF = pd.DataFrame(logDF)
+logDF.to_csv(r'C:\Users\Scott\Desktop\logDF.csv', index=False, header=False)
+
+# Create the other pandas DataFrame:
+df = pd.DataFrame(df)
+df.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False)
+
+print("Program finishing! ", time.time()-start, " seconds.")
 
 
 '''
