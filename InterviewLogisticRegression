@@ -26,7 +26,7 @@ start=time.time()
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
 
-#Drop columns that provide no numberic value:
+#Drop columns that provide no numberic value or missing too much data:
 df.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
          'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
          'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
