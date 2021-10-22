@@ -43,13 +43,12 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 
 y = np.asarray(df['y']) #This will ALWAYS stay the same as the depedent variable column.
-
 logDF=[] #keep track of the logistic regression results
 
-for i in range(1, 10_001):
-    xCOL='x'+str(i) #this will increment through column x1 to x100 as new independent variable.
+for i in range(1, 101):
+    xNUM='x'+str(i) #this will increment through column x1 to x100 as new independent variable.
     try:
-        X = np.asarray(df[[xCOL]]) #this will increment through x1 to x100. 
+        X = np.asarray(df[[xNUM]]) #this will increment through x1 to x100. 
         logmodel=LogisticRegression()
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = None)
         
@@ -61,21 +60,19 @@ for i in range(1, 10_001):
 
         #use model to make predictions on test data
         y_pred = log_regression.predict(X_test)
-
-        #use model to make predictions on test data
-        y_pred = log_regression.predict(X_test)
         
         cnf_matrix = metrics.confusion_matrix(y_test, y_pred)
-        probability=metrics.accuracy_score(y_test, y_pred)
-        
+        probability= round(metrics.accuracy_score(y_test, y_pred), 4)
+
         logDF.append(probability) #add probability to list
-        print(probability)
+      
         
         time.sleep(.05) #DO NOT WANT TO CRASH MY NEW COMPUTER!
     except:
-        print("An exception occurred on: ", xCOL)
+        #This WILL sometimes happen, for example on 'Tuesday':
+        print("An ERROR occurred on: ", xNUM)
         logDF.append("ERORR") 
-print("Done calculating logistic regression test train in: ", time.time()-start, " seconds")
+print("Done calculating logistic regression test train in: ",  round(time.time()-start, 3),, " seconds")
 
 '''
 Step 3 - Generate predictions:
@@ -97,7 +94,7 @@ logDF = pd.DataFrame(logDF)
 logDF.to_csv(r'C:\Users\Scott\Desktop\logDF.csv', index=False, header=False)
 
 # Create the other pandas DataFrame:
-df = pd.DataFrame(df)
-df.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False)
+nonDF = pd.DataFrame(df)
+nonDF.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False)
 
-print("Program finishing! ", time.time()-start, " seconds.")
+print("Program finishing! ",  round(time.time()-start, 3), " seconds.")
