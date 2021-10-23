@@ -61,24 +61,24 @@ I know that when I first learned KNN nearest means a simple graph ("is this a ca
 the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better. 
 
 Additional Notes:
-'x3' removed due data not being a number
-'x7'
-'x19' 
-'x24'
-'x30'
-'x31' 
-'x33'
-'x39'
-'x42'
-'x44'
-'x49'
-'x52'
-'x57'
-'x58'
-'x60'
-'x65' 
-'x67'
-'x77' 
-'x93'
-'x99'
+'x3'  removed due data not being a number
+'x7'  removed due data not being a number
+'x19' removed due data not being a number
+'x24' removed due data not being a number
+'x30' removed for having too much missing data
+'x31' removed due data not being a number
+'x33' removed due data not being a number
+'x39' removed due data not being a number
+'x42' removed for having too much missing data
+'x44' removed for having too much missing data
+'x49' removed for having too much missing data
+'x52' removed for having too much missing data
+'x57' removed for having too much missing data
+'x58' not useful data, repeating same number
+'x60' removed for having too much missing data
+'x65' removed for having too much missing data
+'x67' not useful data, repeating same number
+'x77' removed due data not being a number
+'x93' removed due data not being a number
+'x99' removed due data not being a number
 '''
