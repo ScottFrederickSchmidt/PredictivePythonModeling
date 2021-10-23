@@ -14,6 +14,7 @@ import seaborn as sns
 %matplotlib inline
 
 start=time.time()
+print("Starting analyst for KNN classification:")
 
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
@@ -48,7 +49,8 @@ scaled_data = pd.DataFrame(scaled_features, columns = df.drop('y', axis=1).colum
 from sklearn.model_selection import train_test_split
 x = scaled_data
 y = df['y'] #This will not change as the depedent variable
-x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x, y, test_size = 0.3)
+x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x, y, test_size = 0.3, random_state=42)
+#Random state is needed or a different result will populate everytime.
 
 '''
 Step 3 - Generate predictions:
@@ -82,28 +84,38 @@ model.fit(x_training_data, y_training_data)
 predictions = model.predict(x_test_data)
 
 #Performance measurement:
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
+import sklearn.metrics as metrics
+from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
 #print(classification_report(y_test_data, predictions))
 #print(confusion_matrix(y_test_data, predictions))
 
+#use model to predict probability that given y value is 1:
+y_pred_proba = model.predict_proba(x_test_data)[::,1]
 
-testDF=r'C:\Users\scott\Desktop\exercise_40_test.csv' 
-testDF=pd.read_csv(testDF)
+#calculate AUC of model
+results=[] #store as a list to send to the csv file later on
+auc = round( metrics.roc_auc_score(y_test_data, y_pred_proba), 4 ) 
+print(auc)
+results.append(auc) #going to store results in a list
 
-#Drop columns that provide no numberic value:
-testDF.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
-         'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
-         'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
+#acc = metrics.accuracy_score(y_test_data, predictions) #not needed
+print(confusion_matrix(y_test_data, predictions))
 
 
 # Create the KNN predictive analytics pandas DataFrame:
-df = pd.DataFrame(error_rates)
+df = pd.DataFrame(results)
 df.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False) #index, header=false gets rid of index, header 
 
 print("Program Done! KNN data finished analyzing. ",  round(time.time()-start, 3), " seconds.")
 
 '''
+Starting analyst for KNN classification:
+0.9595
+[[34  3]
+ [ 0  1]]
+Program Done! KNN data finished analyzing.  0.654  seconds.
+
+
  precision    recall  f1-score   support
 
            0       0.92      0.94      0.93        35
@@ -116,5 +128,4 @@ weighted avg       0.84      0.87      0.86        38
 [[33  2]
  [ 3  0]]
 Program Done! KNN data finished analyzing.  0.828  seconds.
-
 '''
