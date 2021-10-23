@@ -12,27 +12,18 @@ import pandas as pd
 import time
 import seaborn as sns
 
-'''
-Data leakage can be defined as: 
-1)Understanding the Dataset.
-2)Cleaning Dataset for Duplicates.
-3)Selecting Features with Regard to Target Variable Correlation and Temporal Ordering.
-4)Splitting Dataset into Train, Validation, and Test Groups.
-5)Normalizing After Splitting, BUT Before Cross Validation.
-'''
-
 start=time.time()
 
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
 
-#Drop columns that provide no numberic value or missing too much data:
+#Drop columns that provide no numberic value:
 df.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
          'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
          'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
 
 df.dropna(inplace=True) #delete any rows with missing values the simple way
-#print(df)
+
 
 '''
 Step 2 - Build your models: 
@@ -47,15 +38,14 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 
 y = np.asarray(df['y']) #This will ALWAYS stay the same as the depedent variable column.
-results=[] #store results that will later be turned into a DF.
 
-#Split the data set into x and y data
+#Split the data set into x and y data:
 y_data = df['y']
 x_data = df.drop('y', axis = 1)
 
-#Split the data set into training data and test data
+#split the dataset into training (70%) and testing (30%) sets:
 from sklearn.model_selection import train_test_split
-x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x_data, y_data, test_size = 0.3)
+x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x_data, y_data, test_size = 0.3, random_state=42)
 
 #Create the model
 from sklearn.linear_model import LogisticRegression
@@ -64,15 +54,7 @@ model = LogisticRegression()
 #Train the model and create predictions
 model.fit(x_training_data, y_training_data)
 predictions = model.predict(x_test_data)
-print(predictions)
-
-#Calculate performance metrics
-from sklearn.metrics import classification_report
-#print(classification_report(y_test_data, predictions))
-
-#Generate a confusion matrix
-from sklearn.metrics import confusion_matrix
-#print(confusion_matrix(y_test_data, predictions))
+#print(predictions)
 
 
 '''
@@ -81,35 +63,44 @@ Create predictions on the data in test.csv using each of your trained models.
 The predictions should be the class probabilities for belonging to the positive class (labeled '1').  
 
 Be sure to output a prediction for each of the rows in the test dataset (10K rows). 
-Save the results of each of your models in a separate CSV file.  Title the two files 'glmresults.csv' and 'nonglmresults.csv'. 
+Save the results of each of your models in a separate CSV file.  
+Title the two files 'glmresults.csv' and 'nonglmresults.csv'. 
 Each file should have a single column representing the predicted probabilities for its respective model. \
 Please do not include a header label or index column. 
-
-NOTES:
-#index  = false gets rid of index 
-#header = false gets rid of header
 '''
+results=[] #store results that will later be turned into a DF.
+
+#Calculate performance metrics
+from sklearn.metrics import classification_report
+#print(classification_report(y_test_data, predictions))
+
+#Generate a confusion matrix
+from sklearn.metrics import confusion_matrix, roc_auc_score
+
+#use model to predict probability that given y value is 1:
+y_pred_proba = model.predict_proba(x_test_data)[::,1]
+
+#calculate AUC of model
+results=[]
+auc = round( metrics.roc_auc_score(y_test_data, y_pred_proba), 4 ) 
+print(auc)
+results.append(auc) #going to store results in a list
+
+
+#acc = metrics.accuracy_score(y_test_data, predictions) #not needed
+print(confusion_matrix(y_test_data, predictions))
+
 
 # Create the pandas logistic regression pandas DataFrame:
 #df=r'C:\Users\scot\Desktop\exercise_40_test' 
-logDF = pd.DataFrame(logDF)
-logDF.to_csv(r'C:\Users\Scott\Desktop\logDF.csv', index=False, header=False)
+logDF = pd.DataFrame(results)
+logDF.to_csv(r'C:\Users\Scott\Desktop\logDF.csv', index=False, header=False) #index, header = false gets rid of index, header  
 
-# Create the other pandas DataFrame:
-nonDF = pd.DataFrame(df)
-nonDF.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False)
-
-print("Program finishing! ",  round(time.time()-start, 3), " seconds.")
+print("Logistic regression program finished in: ",  round(time.time()-start, 3), " seconds.")
 
 '''
-[0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0]
-              precision    recall  f1-score   support
-
-           0       0.86      0.94      0.90        33
-           1       0.00      0.00      0.00         5
-
-    accuracy                           0.82        38
-   macro avg       0.43      0.47      0.45        38
-weighted avg       0.75      0.82      0.78        38
+0.6216
+[[33  4]
+ [ 1  0]]
+Logistic regression program finished in:  0.645  seconds.
 '''
