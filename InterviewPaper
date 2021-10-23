@@ -9,6 +9,10 @@ INTRODUCTION:
 Logistic regression (GLM) and KNN (SLM) are my two favorite classification models. 
 Both of them are simple, easy to use, and implement and should be the first two classification models
 every data scientist learns. Therefore, I chose KNN as my second data model. 
+In this particular exercise, the KNN generated an AUC of 0.9595. 
+The logistic regression produced an AUC of 0.6216. Therefore, the KNN provided better results than the 
+logistic regression. However, I believe I could improve the logistc regression results by finding
+certain columns that might not be revelant. 
 
 KNN Classification Supervised Learning Model:
 The major disavantage of KNN is slow runtime since KNN has to calculate distance between points.
