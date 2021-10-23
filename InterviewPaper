@@ -1,0 +1,52 @@
+'''
+Additionally, your executive summary should include which algorithm you think will perform better on the test set,
+and your support for that decision. Based on your model development process, include estimates for the test AUCs for each model. 
+The estimates should be in a table and rounded to four decimal places.
+Finally, describe how you would demonstrate to a business partner that one model is better than the other without 
+using a scoring metric:
+
+INTRODUCTION:
+Logistic regression (GLM) and KNN (SLM) are my two favorite classification models. 
+Both of them are simple, easy to use, and implement and should be the first two classification models
+every data scientist learns. Therefore, I chose KNN as my second data model. 
+
+KNN Classification Supervised Learning Model:
+The major disavantage of KNN is slow runtime since KNN has to calculate distance between points.
+When there are more than 50,000 rows, KNN can become slow.
+With only 10,000 rows, I knew that KNN would not have a runtime issue in this case.
+This made KNN the perfect second choice for my classification model.
+Also, KNN is sensitive to missing data points and outliers.
+The data was successfully cleaned using simple techniques for now.
+
+My error_rate said that 3 was the best performer for n_neighbors. 
+KNN initial precision was 0.894, however, this number was a bit decieving because I had used 
+model = KNeighborsClassifier(n_neighbors = 5.) 
+When I tried model = KNeighborsClassifier(n_neighbors = 7),
+precision dropped to  0.82. 
+
+LOGISTIC REGRESSION:
+Logistic regression requires a lot of datasets. 
+In this case, it was not an issue as there were 10,000 rows for less than 100 features.
+Some believe that there should be 10x more rows than features. This fit this description.
+Overfitting is an isssue if there are more features than datapoints. 
+One disavantage of logistic regression is scaling features.
+
+DEMONSTRATE TO BUSINESS MODEL:
+When describing a data model (especially to a non techncal person), it is best to use simple and give
+a short business answer. Also, using a simple data model is easier for other employees and customers to 
+understand. Therefore, using linear, logistic, and KNN are good models to use.
+
+A good example would be this: "This model is better because it had a higher r-squared. 
+The higher the r-squared the better the probability. R2 adjusts for the amount of datapoints so it is
+a well trusted probability."
+
+A bad example describing a data model (especially to a non technicial person) would be using 
+complex words (often just to "look smart") that people will not understand.
+For example, "Support Vector model is the better model because it uses data points that are closer to the hyperplane and 
+influence the position and orientation of the hyperplane to maximize the margin of the classifier."
+
+This answer is not visually appealing and would be hard for someone to understand. 
+Oftentime, the best way to describe a model is to your graphs and data visualizing. 
+I know that when I first learned KNN nearest means a simple graph ("is this a cat or dog") helped me understand
+the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better. 
+'''
