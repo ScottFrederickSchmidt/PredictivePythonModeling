@@ -6,12 +6,12 @@ Finally, describe how you would demonstrate to a business partner that one model
 using a scoring metric:
 
 INTRODUCTION:
-Logistic regression (GLM) and KNN (SLM) are my two favorite classification models. 
-Both of them are simple, easy to use, and implement and should be the first two classification models
-every data scientist learns. Therefore, I chose KNN as my second data model. 
+Logistic regression (GLM), Linear regression and KNN (SLM) are my three favorite classification models.
+All of them are simple, easy to use, and implement and should be the classification models
+for every data scientist learns. Therefore, I chose KNN as my second data model. 
 In this particular exercise, the KNN generated an AUC of 0.9595. 
 The logistic regression produced an AUC of 0.6216. I additionally performed a linear regression
-for fun which produced a 0.9189 AUC. Therefore, the KNN provided better results than the 
+for fun which produced a 0.9189 AUC. Therefore, the KNN and linear regression provided better results than the 
 logistic regression. However, I believe I could improve the logistc regression results by finding
 certain columns that might not be revelant and giving the better columns a higher value. 
 
