@@ -10,9 +10,10 @@ Logistic regression (GLM) and KNN (SLM) are my two favorite classification model
 Both of them are simple, easy to use, and implement and should be the first two classification models
 every data scientist learns. Therefore, I chose KNN as my second data model. 
 In this particular exercise, the KNN generated an AUC of 0.9595. 
-The logistic regression produced an AUC of 0.6216. Therefore, the KNN provided better results than the 
+The logistic regression produced an AUC of 0.6216. I additionally performed a linear regression
+for fun which produced a 0.9189 AUC. Therefore, the KNN provided better results than the 
 logistic regression. However, I believe I could improve the logistc regression results by finding
-certain columns that might not be revelant. 
+certain columns that might not be revelant and giving the better columns a higher value. 
 
 KNN Classification Supervised Learning Model:
 The major disavantage of KNN is slow runtime since KNN has to calculate distance between points.
@@ -35,6 +36,11 @@ Some believe that there should be 10x more rows than features. This fit this des
 Overfitting is an isssue if there are more features than datapoints. 
 One disavantage of logistic regression is scaling features.
 
+LINEAR REGRESSION:
+As expected, the linear regression performed better than logistic with a 0.9189 AUC.
+One disavantage of linear regression is it is prone to overfitting and outliers. 
+However, the model performed well even without removing any outliers. 
+
 DEMONSTRATE TO BUSINESS MODEL:
 When describing a data model (especially to a non techncal person), it is best to use simple and give
 a short business answer. Also, using a simple data model is easier for other employees and customers to 
@@ -53,4 +59,26 @@ This answer is not visually appealing and would be hard for someone to understan
 Oftentime, the best way to describe a model is to your graphs and data visualizing. 
 I know that when I first learned KNN nearest means a simple graph ("is this a cat or dog") helped me understand
 the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better. 
+
+Additional Notes:
+'x3' removed due data not being a number
+'x7'
+'x19' 
+'x24'
+'x30'
+'x31' 
+'x33'
+'x39'
+'x42'
+'x44'
+'x49'
+'x52'
+'x57'
+'x58'
+'x60'
+'x65' 
+'x67'
+'x77' 
+'x93'
+'x99'
 '''
