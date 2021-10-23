@@ -1,5 +1,5 @@
 '''
-Python data science interview coding project for a Fortune50 company!
+Python data science coding interview project for a Fortune50 company!
 Step1: Clean and prepare your data:
 The data in this exercise have been simulated to mimic real, dirty data. 
 Please clean the data with whatever method(s) you believe to be best/most suitable. 
@@ -23,8 +23,8 @@ df.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
          'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
          'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
 
-df.dropna(inplace=True) #delete any rows with missing values the simple way
-#print(df)
+df.dropna(inplace=True) #delete any rows with missing values the simple way.
+#A more complex way would be to inmpute the mean for missing numeric values.
 
 '''
 Step 2 - Build your models: 
@@ -32,9 +32,8 @@ For this exercise, you are required to build two models. The first model must be
 The second model may be any supervised learning algorithm that is not from the GLM family.
 '''
 
-# MODEL2 KNN:
+# KNN using model2:
 y = np.asarray(df['y']) #This will ALWAYS stay the same as the depedent variable column.
-results=[] #keep track of the logistic regression results
 
 #Import standardization functions from scikit-learn
 from sklearn.preprocessing import StandardScaler
@@ -48,33 +47,8 @@ scaled_data = pd.DataFrame(scaled_features, columns = df.drop('y', axis=1).colum
 #Split the data set into training data and test data
 from sklearn.model_selection import train_test_split
 x = scaled_data
-y = df['y']
+y = df['y'] #This will not change as the depedent variable
 x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x, y, test_size = 0.3)
-
-#Train the model and make predictions
-from sklearn.neighbors import KNeighborsClassifier
-model = KNeighborsClassifier(n_neighbors = 1)
-model.fit(x_training_data, y_training_data)
-predictions = model.predict(x_test_data)
-
-#Performance measurement
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-print(classification_report(y_test_data, predictions))
-print(confusion_matrix(y_test_data, predictions))
-
-#Selecting an optimal K value
-error_rates = []
-for i in np.arange(1, 88):
-    new_model = KNeighborsClassifier(n_neighbors = i)
-    new_model.fit(x_training_data, y_training_data)
-    new_predictions = new_model.predict(x_test_data)
-    error_rates.append(np.mean(new_predictions != y_test_data))
-
-plt.figure(figsize=(16,12))
-plt.plot(error_rates)
-
-print("Done calculating KNN nearest neighbors in: ",  round(time.time()-start, 3), " seconds")
 
 '''
 Step 3 - Generate predictions:
@@ -87,22 +61,60 @@ Each file should have a single column representing the predicted probabilities f
 Please do not include a header label or index column.
 '''
 
-# Create the other pandas DataFrame:
-df = pd.DataFrame(df)
-df.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False) #index, header  = false gets rid of index, header 
+'''
+#Selecting an optimal K value:
+error_rates = []
+for i in np.arange(1, 40):
+    new_model = KNeighborsClassifier(n_neighbors = i)
+    new_model.fit(x_training_data, y_training_data)
+    new_predictions = new_model.predict(x_test_data)
+    error_rates.append(np.mean(new_predictions != y_test_data))
 
-print("Program finishing! ",  round(time.time()-start, 3), " seconds.")
+plt.figure(figsize=(16,12))
+plt.plot(error_rates)
+
+#Conclusion: The value this graph selected to use was 3 for n_neighbors.
+'''
+#Train the model and make predictions:
+from sklearn.neighbors import KNeighborsClassifier
+model = KNeighborsClassifier(n_neighbors =3) #Must be an odd number to break a tie
+model.fit(x_training_data, y_training_data)
+predictions = model.predict(x_test_data)
+
+#Performance measurement:
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+#print(classification_report(y_test_data, predictions))
+#print(confusion_matrix(y_test_data, predictions))
+
+
+testDF=r'C:\Users\scott\Desktop\exercise_40_test.csv' 
+testDF=pd.read_csv(testDF)
+
+#Drop columns that provide no numberic value:
+testDF.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
+         'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
+         'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
+
+
+# Create the KNN predictive analytics pandas DataFrame:
+df = pd.DataFrame(error_rates)
+df.to_csv(r'C:\Users\Scott\Desktop\nonglmresults.csv', index=False, header=False) #index, header=false gets rid of index, header 
+
+print("Program Done! KNN data finished analyzing. ",  round(time.time()-start, 3), " seconds.")
 
 '''
-     precision    recall  f1-score   support
+ precision    recall  f1-score   support
 
-           0       0.85      0.91      0.88        32
-           1       0.25      0.17      0.20         6
+           0       0.92      0.94      0.93        35
+           1       0.00      0.00      0.00         3
 
-    accuracy                           0.79        38
-   macro avg       0.55      0.54      0.54        38
-weighted avg       0.76      0.79      0.77        38
+    accuracy                           0.87        38
+   macro avg       0.46      0.47      0.46        38
+weighted avg       0.84      0.87      0.86        38
 
-[[29  3]
- [ 5  1]]
+[[33  2]
+ [ 3  0]]
+Program Done! KNN data finished analyzing.  0.828  seconds.
+
 '''
