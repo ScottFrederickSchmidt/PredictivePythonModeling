@@ -47,6 +47,7 @@ x_data = df.drop('y', axis = 1)
 #split the dataset into training (70%) and testing (30%) sets:
 from sklearn.model_selection import train_test_split
 x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x_data, y_data, test_size = 0.3, random_state=42)
+#Logistic regression defaults to L2
 
 #Create the model
 from sklearn.linear_model import LogisticRegression
