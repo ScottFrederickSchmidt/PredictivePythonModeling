@@ -43,7 +43,7 @@ model = DecisionTreeClassifier()
 model.fit(x_training_data, y_training_data)
 predictions = model.predict(x_test_data)
 
-''' STEP3: SPLIT THE DATA '''
+''' STEP3: PREDICT THE DATA '''
 
 #Measure the performance of the decision tree model
 from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score, r2_score
