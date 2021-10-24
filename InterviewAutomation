@@ -3,7 +3,7 @@ Automation attempt to find the best feature variables (columns x1 to x100) that 
 by taking each column individually to compare it to df['y'], the independent variable. 
 For this project, I used r-squared because it is my favorite metric since it combines probability with amount of samples.
 At the end, I stored the results into a dictionary with a key and value. 
-This would help someone else to easily maniuplate the information (such as what are the five highest probability columns?). 
+Then at the very end, I print out the five highest r_squared values within the dictionary. 
 '''
 
 import pandas as pd
