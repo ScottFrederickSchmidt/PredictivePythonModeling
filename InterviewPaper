@@ -71,7 +71,8 @@ Then at the very end, I print out the five highest r_squared values within the d
 
 
 
-Additional Notes:
+ADDITIONAL NOTES:
+#must use random_state = 42 or a different AUC will populate everytime.
 'x3'  removed due data not being a number
 'x7'  removed due data not being a number
 'x19' removed due data not being a number
