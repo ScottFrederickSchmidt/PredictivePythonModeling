@@ -60,6 +60,17 @@ Oftentime, the best way to describe a model is to your graphs and data visualizi
 I know that when I first learned KNN nearest means a simple graph ("is this a cat or dog") helped me understand
 the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better. 
 
+Automation Project:
+I created an automation project to find the best feature variables (columns x1 to x100) that have the highest significance
+by taking each column individually to compare it to df['y'], the independent variable:
+https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewAutomation
+
+For this project, I used r-squared because it is my favorite metric since it combines probability with amount of samples.
+At the end, I stored the results into a dictionary with a key and value. 
+Then at the very end, I print out the five highest r_squared values within the dictionary. 
+
+
+
 Additional Notes:
 'x3'  removed due data not being a number
 'x7'  removed due data not being a number
