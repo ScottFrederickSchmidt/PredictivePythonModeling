@@ -1,6 +1,7 @@
 '''
 LINEAR REGRESSION: This was not a part of the official interview process (only logistic regression was). 
-Python data science coding interview project for a Fortune50 company!
+However, I thought linear regression might provide a better AUC than 0.62 so I also tried linear regression for fun.
+
 Step1: Clean and prepare your data:
 The data in this exercise have been simulated to mimic real, dirty data. 
 Please clean the data with whatever method(s) you believe to be best/most suitable. 
