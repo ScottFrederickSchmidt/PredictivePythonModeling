@@ -25,7 +25,7 @@ Some believe that there should be 10x more rows than features. This fit this des
 Overfitting is an isssue if there are more features than datapoints. 
 One disavantage of logistic regression is having to sometimes scale features.
 
-See code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/LogisticRegression
+Logistic regression code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/LogisticRegression
 
 
 KNN Classification (SLM):
@@ -42,7 +42,7 @@ model = KNeighborsClassifier(n_neighbors = 5.)
 When I tried model = KNeighborsClassifier(n_neighbors = 7),
 precision dropped to  0.82. 
 
-See code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewKNN
+KNN code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewKNN
 
 
 LINEAR REGRESSION:
@@ -50,14 +50,14 @@ As expected, the linear regression performed better than logistic with a 0.9189 
 One disavantage of linear regression is it is prone to overfitting and outliers. 
 However, the model performed well even without removing any outliers. 
 
-See code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewLinearRegression
+Linear regression code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewLinearRegression
 
 
 DECISION TREE:
 The decision tree AUC is 0.3788 which is poor results. Generally, decision trees is one of the best models to use.
 
 
-See code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewDecisionTree
+Decision tree code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewDecisionTree
 
 
 
@@ -66,7 +66,7 @@ The AUC for SVM was .50 which is not a very good result.
 Normally, SVM is a very powerful and complex model that works well as long as there are sufficient data points.
 However, in this case, SVM did not do a good job in comparision to the other models.
 
-See code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewSVM
+SVM code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewSVM
 
 
 AUTOMATION PROJECT:
@@ -76,7 +76,7 @@ For this project, I used r-squared because it is my favorite metric since it com
 At the end, I stored the results into a dictionary with a key and value. 
 Then at the very end, I print out the five highest r_squared values within the dictionary. 
 
-See code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewAutomation
+Automation code project here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewAutomation
 
 
 DEMONSTRATE TO BUSINESS MODEL:
