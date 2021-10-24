@@ -17,7 +17,7 @@ logistic regression. However, I believe I could improve the logistc regression r
 certain columns that might not be revelant and giving the better columns a higher value. 
 
 Additionally, I added a decision tree, support vector, neural networks, and an automation project.
-These ones will be specfically discssed individually later.
+These models will be discssed individually later on how they could be improved for better AUC later.
 
 Paper is here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/edit/main/InterviewPaper
 
