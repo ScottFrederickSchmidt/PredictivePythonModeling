@@ -48,7 +48,17 @@ As expected, the linear regression performed better than logistic with a 0.9189 
 One disavantage of linear regression is it is prone to overfitting and outliers. 
 However, the model performed well even without removing any outliers. 
 
-See code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewLinear
+See code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewLinearRegression
+
+
+DECISION TREE:
+See code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewDecisionTree
+
+
+
+SUPPORT VECTOR MACHINE:
+See code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewSVM
+
 
 AUTOMATION PROJECT:
 I invented an automation data science Python project to find the best feature variables (columns x1 to x100) that have the highest significance
