@@ -1,0 +1,96 @@
+#https://github.com/nickmccullum/python-machine-learning/blob/master/05-support-vector-machines.py
+
+'''
+SAMPLE SUPPORT VECTOR MACHINE USING TITANIC DATA FROM KAGGLE:
+Suvived is the Y variable being analyzed for this project.
+'''
+
+#Data imports
+import pandas as pd
+import numpy as np
+import time
+
+#Visualization imports
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+
+'''
+Step1: CLEAN DATA: 
+'''
+
+start=time.time()
+print("Support vector classification model starting!")
+tDF = pd.read_csv(r'C:\Users\Scott\Desktop\titanic_train.csv')
+
+#These values have no numeric value:
+tDF.drop(['Name', 'PassengerId', 'Ticket', 'Sex', 'Embarked', 'Cabin'], axis = 1, inplace = True)
+
+#Drop all rows with missing data:
+tDF.dropna(inplace=True)
+
+'''
+STEP2: MODEL AND TRAIN THE DATA:
+'''
+
+#Split the data set into training data and test data
+y_data = tDF['Survived']
+x_data = tDF.drop('Survived', axis = 1)
+
+#Split the data set into training data and test data
+from sklearn.model_selection import train_test_split
+x_train_data, x_test_data, y_train_data, y_test_data = train_test_split(x_data, y_data, test_size = 0.3, random_state=42)
+
+#Train the SVM model
+from sklearn.svm import SVC
+model = SVC()
+model.fit(x_train_data, y_train_data)
+
+'''
+STEP 3: MAKE PREDICTIONS:
+'''
+
+#Make predictions with the model
+predictions = model.predict(x_test_data)
+
+#Performance measurement:
+import sklearn.metrics as metrics
+from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
+#print(classification_report(y_test_data, predictions))
+#print(confusion_matrix(y_test_data, predictions))
+
+metrics.mean_absolute_error(y_test_data, predictions)
+metrics.mean_squared_error(y_test_data, predictions)
+np.sqrt(metrics.mean_squared_error(y_test_data, predictions))
+
+
+print(classification_report(y_test_data, predictions))
+print(confusion_matrix(y_test_data, predictions))
+
+#use model to predict probability that given y value is 1:
+y_pred_proba = model.predict(x_test_data)
+
+#calculate AUC of model
+results=[]
+auc = round( metrics.roc_auc_score(y_test_data, y_pred_proba), 4 ) 
+print("AUC is: ", auc)
+results.append(auc) #going to store results in a list
+
+
+
+'''
+#FINAL RESULTS:
+Support vector classification model starting!
+              precision    recall  f1-score   support
+
+           0       0.66      0.90      0.76       126
+           1       0.71      0.34      0.46        89
+
+    accuracy                           0.67       215
+   macro avg       0.69      0.62      0.61       215
+weighted avg       0.68      0.67      0.64       215
+
+[[114  12]
+ [ 59  30]]
+AUC is:  0.6209
+'''
