@@ -6,6 +6,7 @@ The first column 'y' is the independent variable being analyzed for this project
 #Numerical computing libraries
 import pandas as pd
 import numpy as np
+import time
 
 #Visalization libraries
 import matplotlib.pyplot as plt
@@ -16,9 +17,8 @@ import seaborn as sns
 df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
 df=pd.read_csv(df)
 
-#Exploratory data analysis
-info=df.info()
-pairplot=df.pairplot(df, hue = 'y')
+start=time.time()
+print("Starting decision tree classification analysis.")
 
 ''' STEP1: CLEAN THE DATA '''
 
@@ -35,7 +35,7 @@ df.dropna(inplace=True) #delete any rows with missing values the simple way.
 from sklearn.model_selection import train_test_split
 x = df.drop('y', axis = 1)
 y = df['y']
-x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x, y, test_size = 0.3)
+x_training_data, x_test_data, y_training_data, y_test_data = train_test_split(x, y, test_size = 0.3, random_state=42)
 
 #Train the decision tree model
 from sklearn.tree import DecisionTreeClassifier
@@ -60,30 +60,76 @@ random_forest_predictions = random_forest_model.predict(x_test_data)
 print(classification_report(y_test_data, random_forest_predictions))
 print(confusion_matrix(y_test_data, random_forest_predictions))
 
+'''
+STEP 3: MAKE PREDICTIONS:
+'''
+
+#Make predictions with the model
+predictions = model.predict(x_test_data)
+
+#Performance measurement:
+import sklearn.metrics as metrics
+from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
+#print(classification_report(y_test_data, predictions))
+#print(confusion_matrix(y_test_data, predictions))
+
+metrics.mean_absolute_error(y_test_data, predictions)
+metrics.mean_squared_error(y_test_data, predictions)
+np.sqrt(metrics.mean_squared_error(y_test_data, predictions))
+
+
+print(classification_report(y_test_data, predictions))
+print(confusion_matrix(y_test_data, predictions))
+
+#use model to predict probability that given y value is 1:
+y_pred_proba = model.predict(x_test_data)
+
+#calculate AUC of model
+results=[]
+auc = round( metrics.roc_auc_score(y_test_data, y_pred_proba), 4 ) 
+print("AUC is: ", auc)
+results.append(auc) #going to store results in a list
+
+tree = pd.DataFrame(results)
+tree.to_csv(r'C:\Users\Scott\Desktop\tree.csv', index=False, header=False) #index, header = false gets rid of index, header  
+print("Decision tree classification analysis program finished in: ",  round(time.time()-start, 3), " seconds.")
 
 
 '''
-#FINAL RESULTS THAT WERE PRINTED:
-    precision    recall  f1-score   support
-
-           0       0.93      0.74      0.83        35
-           1       0.10      0.33      0.15         3
-
-    accuracy                           0.71        38
-   macro avg       0.51      0.54      0.49        38
-weighted avg       0.86      0.71      0.77        38
-
-[[26  9]
- [ 2  1]]
+          Starting decision tree classification analysis.
               precision    recall  f1-score   support
 
-           0       0.92      1.00      0.96        35
-           1       0.00      0.00      0.00         3
+           0       0.83      0.76      0.79        33
+           1       0.00      0.00      0.00         5
 
-    accuracy                           0.92        38
-   macro avg       0.46      0.50      0.48        38
-weighted avg       0.85      0.92      0.88        38
+    accuracy                           0.66        38
+   macro avg       0.42      0.38      0.40        38
+weighted avg       0.72      0.66      0.69        38
 
-[[35  0]
- [ 3  0]]
+[[25  8]
+ [ 5  0]]
+              precision    recall  f1-score   support
+
+           0       0.87      1.00      0.93        33
+           1       0.00      0.00      0.00         5
+
+    accuracy                           0.87        38
+   macro avg       0.43      0.50      0.46        38
+weighted avg       0.75      0.87      0.81        38
+
+[[33  0]
+ [ 5  0]]
+              precision    recall  f1-score   support
+
+           0       0.83      0.76      0.79        33
+           1       0.00      0.00      0.00         5
+
+    accuracy                           0.66        38
+   macro avg       0.42      0.38      0.40        38
+weighted avg       0.72      0.66      0.69        38
+
+[[25  8]
+ [ 5  0]]
+AUC is:  0.3788
+Decision tree classification analysis program finished in:  0.182  seconds.
 '''
