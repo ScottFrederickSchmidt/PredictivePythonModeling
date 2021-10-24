@@ -16,6 +16,9 @@ for fun which produced a 0.9189 AUC. Therefore, the KNN and linear regression pr
 logistic regression. However, I believe I could improve the logistc regression results by finding
 certain columns that might not be revelant and giving the better columns a higher value. 
 
+Additionally, I added a decision tree, support vector, neural networks, and an automation project.
+These ones will be specfically discssed individually later.
+
 Paper is here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/edit/main/InterviewPaper
 
 LOGISTIC REGRESSION (GLM):
