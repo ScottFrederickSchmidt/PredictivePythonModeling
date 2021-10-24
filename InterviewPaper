@@ -16,7 +16,7 @@ for fun which produced a 0.9189 AUC. Therefore, the KNN and linear regression pr
 logistic regression. However, I believe I could improve the logistc regression results by finding
 certain columns that might not be revelant and giving the better columns a higher value. 
 
-KNN Classification Supervised Learning Model:
+KNN Classification (SLM):
 The major disavantage of KNN is slow runtime since KNN has to calculate distance between points.
 When there are more than 50,000 rows, KNN can become slow.
 With only 10,000 rows, I knew that KNN would not have a runtime issue in this case.
@@ -30,7 +30,7 @@ model = KNeighborsClassifier(n_neighbors = 5.)
 When I tried model = KNeighborsClassifier(n_neighbors = 7),
 precision dropped to  0.82. 
 
-LOGISTIC REGRESSION:
+LOGISTIC REGRESSION (GLM):
 Logistic regression requires a lot of datasets. 
 In this case, it was not an issue as there were 10,000 rows for less than 100 features.
 Some believe that there should be 10x more rows than features. This fit this description.
