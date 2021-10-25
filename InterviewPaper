@@ -8,10 +8,8 @@ using a scoring metric.
 
 INTRODUCTION:
 Logistic regression (GLM), Linear regression and KNN (SLM) are my three favorite classification models.
-All of them are simple, easy to use, and implement and should be the classification models
-for every data scientist learns. Therefore, I chose KNN as my second data model. 
-In this particular exercise, the KNN generated an AUC of 0.9595. 
-The logistic regression produced an AUC of 0.6216. I additionally performed a linear regression
+All of them are simple, easy to use, and implement. Therefore, I chose KNN as my second data model. 
+In this particular exercise, the KNN generated an AUC of 0.9595. The logistic regression produced an AUC of 0.6216. I additionally performed a linear regression
 for fun which produced a 0.9189 AUC. Therefore, the KNN and linear regression provided better results than the 
 logistic regression. However, I believe I could improve the logistc regression results by finding
 certain columns that might not be revelant and giving the better columns a higher value. 
@@ -85,6 +83,9 @@ by taking each column individually to compare it to df['y'], the independent var
 For this project, I used r-squared because it is my favorite metric since it combines probability with amount of samples.
 At the end, I stored the results into a dictionary with a key and value. 
 Then at the very end, I print out the five highest r_squared values within the dictionary. 
+
+An additional cool project to do would be to use a Python intertools permutations script to calculate every combination for each
+column to detect which combo provides the best outcome.
 
 Automation code project here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewAutomation
 
