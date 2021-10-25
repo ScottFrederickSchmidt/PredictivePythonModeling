@@ -1,0 +1,46 @@
+'''
+Neural Networks (IN PROCRESS, NOT FINISHED): 
+This is a very complex and difficult to understand classification model.
+Therefore, it is not used as often, but I thought it would be fun to try to program.
+'''
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+print("Starting Neural Network classification:")
+
+df=r'C:\Users\scott\Desktop\exercise_40_train.csv' 
+df=pd.read_csv(df)
+
+#Drop columns that provide no numberic value:
+df.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
+         'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
+         'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
+
+df.dropna(inplace=True) #delete any rows with missing values the simple way.
+#A more complex way would be to inmpute the mean for missing numeric values.
+
+'''
+Step 2 - Build your models: 
+For this exercise, you are required to build two models. The first model must be a logistic regression. 
+The second model may be any supervised learning algorithm that is not from the GLM family.
+'''
+
+
+from numpy import exp, array, random, dot
+#training_set_inputs = array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
+#training_set_outputs = array([[0, 1, 1, 0]]).T
+training_set_inputs = df
+training_set_outputs = np.asarray(df['y']).T #This will ALWAYS stay the same as the depedent variable column.
+
+random.seed(1)
+synaptic_weights = 2 * random.random((3, 1)) - 1
+for iteration in range(10000):
+    output = 1 / (1 + exp(-(dot(training_set_inputs, synaptic_weights))))
+    synaptic_weights += dot(training_set_inputs.T, (training_set_outputs - output) * output * (1 - output))
+print (1 / (1 + exp(-(dot(array([1, 0, 0]), synaptic_weights)))) )
+
+print("Finished Neural Network classification:")
