@@ -1,30 +1,20 @@
 '''
-INTRODUCTION:
-Logistic regression (GLM), Linear regression and KNN (SLM) are my three favorite classification models.
-All of them are simple, easy to use, and implement. Therefore, I chose KNN as my second data model. 
-In this particular exercise, the KNN generated an AUC of 0.9595. The logistic regression produced an AUC of 0.6216. 
-I additionally performed a linear regression which produced a 0.9189 AUC. 
-herefore, the KNN and linear regression provided better results than the logistic regression. 
-However, I believe I could improve the logistc regression results by finding
-certain columns that might not be revelant and giving the better columns a higher value. 
+EXECUTIVE SUMMARY
+In quick summary, linear regression and KNN were the best two models I found. In this exercise, the KNN generated an AUC of 0.9595. The logistic regression produced an AUC of 0.6216. I additionally performed a linear regression which produced a 0.9189 AUC. Therefore, the KNN and linear regression provided better results than the logistic regression. However, I believe I could improve the logistic regression results by finding certain columns that might not be relevant and giving the better columns a higher value. 
 
-Additionally, I added a decision tree, support vector, and an automation project.
-These models will be discssed individually later and how they could be improved for better AUC later.
+Additionally, I added a decision tree, support vector, and an automation project. These models will be discussed individually later and how they could be improved for better AUC later.
 
-Paper is here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/edit/main/InterviewPaper
+A copy of my paper is here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/edit/main/InterviewPaper
 
 LOGISTIC REGRESSION (GLM):
 Logistic regression requires a lot of datasets. 
-In this case, it was not an issue as there were 10,000 rows for less than 100 features.
-Some believe that there should be 10x more rows than features. This fit this description.
-Overfitting is an isssue if there are more features than datapoints. 
-One disavantage of logistic regression is having to sometimes scale features.
+In this case, it was not an issue as there were 10,000 rows for less than 100 features. Some believe that there should be 10x more rows than features. This fit this description. Overfitting is an issue if there are more features than datapoints. One disadvantage of logistic regression is having to sometimes scale features.
 
 Logistic regression code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/LogisticRegression
 
 
 KNN Classification (SML):
-The major disavantage of KNN is slow runtime since KNN has to calculate distance between points.
+The major disadvantage of KNN is slow runtime since KNN has to calculate distance between points.
 When there are more than 50,000 rows, KNN can become slow.
 With only 10,000 rows, I knew that KNN would not have a runtime issue in this case.
 This made KNN the perfect second choice for my classification model.
@@ -41,34 +31,28 @@ KNN code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling
 
 
 LINEAR REGRESSION:
-As expected, the linear regression performed better than logistic with a 0.9189 AUC.
-Linear regression is a simple, popular, and powerful model.
-One disavantage of linear regression is it is prone to overfitting and outliers. 
-However, the model performed well even without removing any outliers. 
+As expected, the linear regression performed better than logistic with a 0.9189 AUC. Linear regression is a simple, popular, and powerful model.
+One disadvantage of linear regression is it is prone to overfitting and outliers. However, the model performed well even without removing any outliers. 
 
 Linear regression code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewLinearRegression
 
 
 RANDOM FOREST:
 Generally, random forest is one of the best models to use.
-The decision tree AUC is 0.3788 but the precision was .93. This is a very rare occurance that should not happen.
+The decision tree AUC is 0.3788 but the precision was .93. This is a very rare occurrence that should not happen.
 After looking at the Python code, there was no real answer of why the AUC would be so low.
 However, underfitting can often occur with decision trees. 
 Therefore, one must carefully select the features carefully when using a decision tree. 
 Using specific features would likely increase the AUC to a more natural probability. 
-After selecting only certain columns the AUC did not go up much. Therefore, it remains unknown
-why the random forest model did not provide a better AUC.
 
 Random Forest code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewRandomForest
 
 
 
 SUPPORT VECTOR MACHINE (SVM):
-The AUC for SVM was .50 which is not a very good result for this excercise. 
-Normally, SVM is a very powerful and complex model that works well as long as there are sufficient data points.
-One disavantage with SVM (and neural networks) is that it is much more complex and be extremely difficult 
-to explain to others. Oftimes, doing a more simople linear (logistic) regression, KNN, or random forest is 
-better simply because its more simple. 
+The AUC for SVM was .50 which is not a very good result for this exercise. 
+Normally, SVM is a very powerful and complex model that works well if there are sufficient data points. One disadvantage with SVM (and neural networks) is that it is much more complex and be extremely difficult to explain to others. Often, doing a simpler linear (logistic) regression, KNN, or random forest is 
+better simply because its simpler. 
 
 SVM code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewSVM
 
@@ -76,7 +60,7 @@ SVM code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModelin
 AUTOMATION PROJECT:
 I invented an automation data science Python project to find the best feature variables (columns x1 to x100) that have the highest significance
 by taking each column individually to compare it to df['y'], the independent variable:
-For this project, I used r-squared because it is my favorite metric since it combines probability with amount of samples.
+For this project, I used r-squared because it is my favorite metric since it combines probability with number of samples.
 At the end, I stored the results into a dictionary with a key and value. 
 Then at the very end, I print out the five highest r_squared values within the dictionary. 
 
@@ -87,36 +71,35 @@ Automation code project here: https://github.com/ScottFrederickSchmidt/Predictiv
 
 
 DEMONSTRATE TO BUSINESS MODEL:
-When describing a data model (especially to a non techncal person), it is best to use simple and give
-a short business answer. Also, using a simple data model is easier for other employees and customers to 
+When describing a data model (especially to a non-technical person), it is best to use simple and give
+a short business answers. Also, using a simple data model is easier for other employees and customers to 
 understand. Therefore, using linear, logistic, and KNN are good models to use.
 
 A good example would be this: "This model is better because it had a higher r-squared. 
-The higher the r-squared the better the probability. R2 adjusts for the amount of datapoints so it is
-a well trusted probability."
+The higher the r-squared the better the probability. R2 adjusts for datapoints so it is a well trusted probability."
 
-A bad example describing a data model (especially to a non technicial person) would be using 
+A bad example describing a data model (especially to a non-technical person) would be using 
 complex words (often just to "look smart") that people will not understand.
 For example, "Support Vector model is the better model because it uses data points that are closer to the hyperplane and 
 influence the position and orientation of the hyperplane to maximize the margin of the classifier."
 
 This answer is not visually appealing and would be hard for someone to understand. 
-Oftentime, the best way to describe a model is to your graphs and data visualizing. 
+Oftentimes, the best way to describe a model is to your graphs and data visualizing. 
 I know that when I first learned KNN nearest means a simple graph ("is this a cat or dog") helped me understand
 the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better.
 
 
 NEURAL NETWORK (IN PROGRESS):
-A big disavantage of neural network is that it is difficult to understand. 
+A big disadvantage of neural network is that it is difficult to understand. 
 Therefore, it becomes challenging to explain to others.
-However, with that being said, I thought it would fun to code.
+However, with that being said, I thought it would be fun to code.
 
 Neural network code (in progress): 
 https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewNeuralNetwork
 
 
 ADDITIONAL NOTES:
-#must use random_state = 42 or a different AUC will populate everytime.
+#must use random_state = 42 or a different AUC will populate every time.
 'x3'  removed due data not being a number
 'x7'  removed due data not being a number
 'x19' removed due data not being a number
