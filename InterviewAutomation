@@ -30,6 +30,9 @@ model = LogisticRegression()
 #model = LinearRegression()
 r2_dict=dict()
 
+
+y = df['y'] #Never changes as the dependent variable. 
+
 for num in range(1, 101):
     try:
         col='x'+str(num) #will look through columns x1 to x100 
@@ -50,3 +53,34 @@ for key, value in best_dict.items():
         
 # print( results['x2']) # dictionary is correctly working, printed r2 value of second column
 print("Linear regression program finished in: ",  round(time.time()-start, 3), " seconds.")
+
+'''
+In addition, here would be an interesting attept to try all possible combinations to calculate every potential outcome using x as the variable.
+This uses intertools Python permutations package.
+
+Note: I only used less than 15 col variabes because doing all 80 would run into a memory runTime issue.
+DRAFT ONLY (below):
+'''
+
+import itertools
+import time
+start=time.time()
+
+col = ['x1, 'x2', 'x4', 'x5', 'x6', 'x7', 'x8', 'x9', 'x10
+'x11', 'x12', 'x13', 'x14']
+
+for L in range(0, len(stuff)+1):
+    for subset in itertools.combinations(col, L):
+        try:
+            col='x'+str(num) #will look through columns x1 to x100 
+            x = df[col]
+            r2 = r2_score(x, y) 
+            r2_dict[col]=r2
+            #print(col,' r2 score is: ', round(r2, 4) ) 
+            time.sleep(.01) #DO NOT WANT TO CRASH MY NEW COMPUTER
+        except:
+            continue
+            #print("error on column, column is likely NAN: ", x) 
+
+end=time.time()
+print("Done calculating ", end-start, " seconds");
