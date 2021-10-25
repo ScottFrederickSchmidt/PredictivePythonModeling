@@ -16,8 +16,8 @@ for fun which produced a 0.9189 AUC. Therefore, the KNN and linear regression pr
 logistic regression. However, I believe I could improve the logistc regression results by finding
 certain columns that might not be revelant and giving the better columns a higher value. 
 
-Additionally, I added a decision tree, support vector, neural networks, and an automation project.
-These models will be discssed individually later on how they could be improved for better AUC later.
+Additionally, I added a decision tree, support vector, and an automation project.
+These models will be discssed individually later and how they could be improved for better AUC later.
 
 Paper is here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/edit/main/InterviewPaper
 
@@ -66,9 +66,11 @@ Random Forest code here:  https://github.com/ScottFrederickSchmidt/PredictivePyt
 
 
 SUPPORT VECTOR MACHINE (SVM):
-The AUC for SVM was .50 which is not a very good result. 
+The AUC for SVM was .50 which is not a very good result for this excercise. 
 Normally, SVM is a very powerful and complex model that works well as long as there are sufficient data points.
-However, in this case, SVM did not do a good job in comparision to the other models.
+One disavantage with SVM (and neural networks) is that it is much more complex and be extremely difficult 
+to explain to others. Oftimes, doing a more simople linear (logistic) regression, KNN, or random forest is 
+better simply because its more simple. 
 
 SVM code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewSVM
 
