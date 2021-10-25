@@ -1,10 +1,7 @@
 '''
 Python data science interview coding project for a Fortune50 company!
-Step1: Clean and prepare your data:
-The data in this exercise have been simulated to mimic real, dirty data. 
-Please clean the data with whatever method(s) you believe to be best/most suitable. 
-Success in this exercise typically involves feature engineering and avoiding data leakage. 
-You may create new features. However, you may not add or supplement with external data. 
+LOGISTIC REGRESSION:
+Step1: Clean and prepare your data: 
 '''
 
 import numpy as np
