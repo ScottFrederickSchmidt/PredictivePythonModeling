@@ -50,6 +50,7 @@ KNN code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling
 
 LINEAR REGRESSION:
 As expected, the linear regression performed better than logistic with a 0.9189 AUC.
+Linear regression is a simple, popular, and powerful model.
 One disavantage of linear regression is it is prone to overfitting and outliers. 
 However, the model performed well even without removing any outliers. 
 
@@ -105,7 +106,7 @@ influence the position and orientation of the hyperplane to maximize the margin 
 This answer is not visually appealing and would be hard for someone to understand. 
 Oftentime, the best way to describe a model is to your graphs and data visualizing. 
 I know that when I first learned KNN nearest means a simple graph ("is this a cat or dog") helped me understand
-the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better. 
+the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better.
 
 
 ADDITIONAL NOTES:
