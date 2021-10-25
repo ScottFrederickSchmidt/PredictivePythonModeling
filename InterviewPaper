@@ -56,6 +56,8 @@ After looking at the Python code, there was no real answer of why the AUC would 
 However, underfitting can often occur with decision trees. 
 Therefore, one must carefully select the features carefully when using a decision tree. 
 Using specific features would likely increase the AUC to a more natural probability. 
+After selecting only certain columns the AUC did not go up much. Therefore, it remains unknown
+why the random forest model did not provide a better AUC.
 
 Random Forest code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewRandomForest
 
