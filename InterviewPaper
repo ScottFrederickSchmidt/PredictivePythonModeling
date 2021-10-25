@@ -111,6 +111,15 @@ I know that when I first learned KNN nearest means a simple graph ("is this a ca
 the KNN data model rather than reading scholarly articles on it. In summary, sometimes simple is better.
 
 
+NEURAL NETWORK (IN PROGRESS):
+A big disavantage of neural network is that it is difficult to understand. 
+Therefore, it becomes challenging to explain to others.
+However, with that being said, I thought it would fun to code.
+
+Neural network code (in progress): 
+https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewNeuralNetwork
+
+
 ADDITIONAL NOTES:
 #must use random_state = 42 or a different AUC will populate everytime.
 'x3'  removed due data not being a number
