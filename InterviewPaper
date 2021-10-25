@@ -23,7 +23,7 @@ One disavantage of logistic regression is having to sometimes scale features.
 Logistic regression code here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/LogisticRegression
 
 
-KNN Classification (SLM):
+KNN Classification (SML):
 The major disavantage of KNN is slow runtime since KNN has to calculate distance between points.
 When there are more than 50,000 rows, KNN can become slow.
 With only 10,000 rows, I knew that KNN would not have a runtime issue in this case.
