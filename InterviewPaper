@@ -57,11 +57,14 @@ Linear regression code here:  https://github.com/ScottFrederickSchmidt/Predictiv
 
 
 RANDOM FOREST:
-The decision tree AUC is 0.3788 which is poor results. Generally, decision trees is one of the best models to use.
-However, underfitting can often occur with decision trees. Therefore, one must carefully select the features carefully
-when using a decision tree. Therefore, more time would be needed to potentially produce better results.
+Generally, random forest is one of the best models to use.
+The decision tree AUC is 0.3788 but the precision was .93. This is a very rare occurance that should not happen.
+After looking at the Python code, there was no real answer of why the AUC would be so low.
+However, underfitting can often occur with decision trees. 
+Therefore, one must carefully select the features carefully when using a decision tree. 
+Using specific features would likely increase the AUC to a more natural probability. 
 
-Random Forest code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewDecisionTree
+Random Forest code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewRandomForest
 
 
 
