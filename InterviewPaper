@@ -1,8 +1,11 @@
 '''
 EXECUTIVE SUMMARY
-In quick summary, linear regression and KNN were the best two models I found. In this exercise, the KNN generated an AUC of 0.9595. The logistic regression produced an AUC of 0.6216. I additionally performed a linear regression which produced a 0.9189 AUC. Therefore, the KNN and linear regression provided better results than the logistic regression. However, I believe I could improve the logistic regression results by finding certain columns that might not be relevant and giving the better columns a higher value. 
-
-Additionally, I added a decision tree, support vector, and an automation project. These models will be discussed individually later and how they could be improved for better AUC later.
+In quick summary, linear regression and KNN were the best two models I found. In this exercise, the KNN generated an AUC of 0.9595.
+The logistic regression produced an AUC of 0.6216. I additionally performed a linear regression which produced a 0.9189 AUC. 
+Therefore, the KNN and linear regression provided better results than the logistic regression.
+However, I believe I could improve the logistic regression results by finding certain columns that might not be relevant and giving the better columns a higher value. 
+Additionally, I added a decision tree, support vector, and an automation project.
+These models will be discussed individually later and how they could be improved for better AUC later.
 
 A copy of my paper is here: https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/edit/main/InterviewPaper
 
