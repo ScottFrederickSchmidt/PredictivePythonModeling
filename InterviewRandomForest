@@ -1,5 +1,5 @@
 '''
-Decision Tree classification predictive model for a fortune50 coding interview:
+Random Forest classification predictive model for a fortune50 coding interview:
 The first column 'y' is the independent variable being analyzed for this project.
 '''
 
@@ -18,11 +18,11 @@ df=r'C:\Users\scott\Desktop\exercise_40_train.csv'
 df=pd.read_csv(df)
 
 start=time.time()
-print("Starting decision tree classification analysis.")
+print("Starting random forest classification analysis.")
 
 ''' STEP1: CLEAN THE DATA '''
 
-#Drop columns that provide no numeric value:
+#Drop columns that provide no numberic value:
 df.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
          'x42', 'x44', 'x49', 'x52', 'x57', 'x58', 'x60', 'x65', 
          'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
@@ -56,10 +56,6 @@ random_forest_model = RandomForestClassifier()
 random_forest_model.fit(x_training_data, y_training_data)
 random_forest_predictions = random_forest_model.predict(x_test_data)
 
-#Measure the performance of the random forest model
-print(classification_report(y_test_data, random_forest_predictions))
-print(confusion_matrix(y_test_data, random_forest_predictions))
-
 '''
 STEP 3: MAKE PREDICTIONS:
 '''
@@ -92,11 +88,11 @@ results.append(auc) #going to store results in a list
 
 tree = pd.DataFrame(results)
 tree.to_csv(r'C:\Users\Scott\Desktop\tree.csv', index=False, header=False) #index, header = false gets rid of index, header  
-print("Decision tree classification analysis program finished in: ",  round(time.time()-start, 3), " seconds.")
+print("Random forest classification analysis program finished in: ",  round(time.time()-start, 3), " seconds.")
 
 
 '''
-Starting decision tree classification analysis.
+Starting random forest tree classification analysis.
 
               precision    recall  f1-score   support
 
@@ -121,5 +117,5 @@ weighted avg       0.94      0.76      0.84        38
 [[29  8]
  [ 1  0]]
 AUC is:  0.3919
-Decision tree classification analysis program finished in:  0.185  seconds.
+Random forest classification analysis program finished in:  0.185  seconds.
 '''
