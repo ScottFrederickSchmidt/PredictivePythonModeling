@@ -61,7 +61,7 @@ The decision tree AUC is 0.3788 which is poor results. Generally, decision trees
 However, underfitting can often occur with decision trees. Therefore, one must carefully select the features carefully
 when using a decision tree. Therefore, more time would be needed to potentially produce better results.
 
-Decision tree code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewDecisionTree
+Random Forest code here:  https://github.com/ScottFrederickSchmidt/PredictivePythonModeling/blob/main/InterviewDecisionTree
 
 
 
