@@ -1,5 +1,5 @@
 '''
-Random Forest classification predictive model for a fortune50 coding interview:
+Random Forest classification predictive model.
 The first column 'y' is the independent variable being analyzed for this project.
 '''
 
