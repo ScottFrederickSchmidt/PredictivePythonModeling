@@ -1,6 +1,6 @@
 '''
 Neural Networks (IN PROCRESS, NOT FINISHED): 
-This is a very complex and difficult to understand classification model.
+This is a more complex and difficult to understand classification model.
 Therefore, it is not used as often, but I thought it would be fun to try to program.
 '''
 
@@ -21,14 +21,10 @@ df.drop(['x3', 'x7', 'x19',  'x24', 'x30', 'x31', 'x33', 'x39',
          'x67', 'x77', 'x93', 'x99'], axis = 1, inplace = True)
 
 df.dropna(inplace=True) #delete any rows with missing values the simple way.
-#A more complex way would be to inmpute the mean for missing numeric values.
 
 '''
-Step 2 - Build your models: 
-For this exercise, you are required to build two models. The first model must be a logistic regression. 
-The second model may be any supervised learning algorithm that is not from the GLM family.
+Step 2 - BUILD YOUR MODELS:
 '''
-
 
 from numpy import exp, array, random, dot
 #training_set_inputs = array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
