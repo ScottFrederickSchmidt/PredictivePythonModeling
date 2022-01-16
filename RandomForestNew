@@ -1,0 +1,11 @@
+'''
+n_estimates:  50
+Mean Absolute Error: 2.579
+Mean Squared Error: 16.018
+Root Mean Squared Error: 4.002
+
+n_estimates:  100
+Mean Absolute Error: 2.568
+Mean Squared Error: 16.783
+Root Mean Squared Error: 4.097
+'''
